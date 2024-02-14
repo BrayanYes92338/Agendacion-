@@ -96,7 +96,6 @@ let modal2 = ref(false);
 let error = ref("");
 let alert = ref("");
 
-
 function validar() {
   if (actividad.value == "") {
     error.value = "Por favor digite la actividad"
