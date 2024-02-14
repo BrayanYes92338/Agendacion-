@@ -56,7 +56,7 @@
             <option value="Baja">Baja</option>
           </select>
           <button class="btn_add" @click="validar()">Agregar</button>
-          <button class="btn" @click="ordenar()" >Ordenar</button>
+          <button class="btn" @click="ordenar()">Ordenar</button>
         </div>
       </div>
       <table>
@@ -65,13 +65,19 @@
             <th>Actividad</th>
             <th>Prioridad</th>
             <th>Fecha</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, i) in datos" :key="i">
+          <tr v-for="(item, i) in datos" :key="i" :style="{ backgroundColor: item.tipo === 'Alta' ? '#E18181' : (item.tipo === 'Mediana' ? '#C8CC95' : (item.tipo === 'Baja' ? '#6ED2A9' : '')) }">
             <td>{{ item.actividad }}</td>
             <td>{{ item.fecha }}</td>
             <td>{{ item.tipo }}</td>
+            <td>
+              <button class="boton" @click="borrar()">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -158,11 +164,15 @@ function ordenar() {
 
     return orden[a.tipo] - orden[b.tipo];
   });
+
+  
 }
 
-
-
-
+function borrar(i) {
+  datos.value.splice(i,1)
+}
 
 </script>
+
+
 
